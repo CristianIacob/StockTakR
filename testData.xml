@@ -1,42 +1,44 @@
-<item>
-  <name>test1</name>
-  <id>1</id>
-  <location>ro</location>
-  <count>21</count>
-</item>
-<item>
-  <name>test2</name>
-  <id>2</id>
-  <location>de</location>
-  <count>13</count>
-</item>
-<item>
-  <name>test3</name>
-  <id>3</id>
-  <location>us</location>
-  <count>53</count>
-</item>
-<item>
-  <name>test4</name>
-  <id>4</id>
-  <location>cn</location>
-  <count>61</count>
-</item>
-<item>
-  <name>test5</name>
-  <id>5</id>
-  <location>it</location>
-  <count>29</count>
-</item>
-<item>
-  <name>test4</name>
-  <id>4</id>
-  <location>cn</location>
-  <count>61</count>
-</item>
-<item>
-  <name>test5</name>
-  <id>5</id>
-  <location>it</location>
-  <count>29</count>
-</item>
+<stock>
+    <item>
+        <name>test1</name>
+        <id>1</id>
+        <location>ro</location>
+        <count>21</count>
+    </item>
+    <item>
+        <name>test2</name>
+        <id>2</id>
+        <location>de</location>
+        <count>13</count>
+    </item>
+    <item>
+        <name>test3</name>
+        <id>3</id>
+        <location>us</location>
+        <count>53</count>
+    </item>
+    <item>
+        <name>test4</name>
+        <id>4</id>
+        <location>cn</location>
+        <count>61</count>
+    </item>
+    <item>
+        <name>test5</name>
+        <id>5</id>
+        <location>it</location>
+        <count>29</count>
+    </item>
+    <item>
+        <name>test4</name>
+        <id>4</id>
+        <location>cn</location>
+        <count>61</count>
+    </item>
+    <item>
+        <name>test5</name>
+        <id>5</id>
+        <location>it</location>
+        <count>29</count>
+    </item>
+</stock>
