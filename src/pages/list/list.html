@@ -3,7 +3,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>My First List</ion-title>
+    <ion-title>Stock List</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,4 +17,11 @@
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
   </div>
+
 </ion-content>
+
+<ion-footer>
+    <button class="addStockBtn" (click)="addStock($event)" ion-fab large item-right>
+      <ion-icon name="add"></ion-icon>
+    </button>
+</ion-footer>
