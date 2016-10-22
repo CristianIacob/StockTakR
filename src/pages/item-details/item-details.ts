@@ -4,7 +4,6 @@ import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { StockList } from "../../app/shared/StockList";
 import { StockItemPage } from "../stock-item/stock-item";
 import { PopoverPage } from './PopoverPage';
-import { StockItem } from "../../app/shared/StockItem";
 
 @Component({
   templateUrl: 'item-details.html'

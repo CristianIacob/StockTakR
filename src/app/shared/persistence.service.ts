@@ -25,18 +25,18 @@ export class PersistenceApi {
   }
 
   init() {
-    console.log('No Stock Lists Found... Creating...');
-
-    var l1_i1: StockItem = new StockItem('l1_i1', 'location');
-    var l1_i2: StockItem = new StockItem('l1_i2', 'location');
-    var l2_i1: StockItem = new StockItem('l2_i1', 'location');
-    var l2_i2: StockItem = new StockItem('l2_i2', 'location');
-
-    var stockLists: StockList[] = [
-      new StockList('list1', [l1_i1, l1_i2]),
-      new StockList('list2', [l2_i1, l2_i2])
-    ];
-
-    this.setStockList(stockLists);
+    // console.log('No Stock Lists Found... Creating...');
+    //
+    // var l1_i1: StockItem = new StockItem('l1_i1', 'location', );
+    // var l1_i2: StockItem = new StockItem('l1_i2', 'location');
+    // var l2_i1: StockItem = new StockItem('l2_i1', 'location');
+    // var l2_i2: StockItem = new StockItem('l2_i2', 'location');
+    //
+    // var stockLists: StockList[] = [
+    //   new StockList('list1', [l1_i1, l1_i2]),
+    //   new StockList('list2', [l2_i1, l2_i2])
+    // ];
+    //
+    // this.setStockList(stockLists);
   }
 }
