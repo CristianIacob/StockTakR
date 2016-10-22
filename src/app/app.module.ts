@@ -5,6 +5,7 @@ import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
 import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { NewItem } from '../pages/new-item/new-item';
+import { PersistenceApi } from "./shared/persistence.service";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,6 @@ import { NewItem } from '../pages/new-item/new-item';
     ListPage,
     NewItem
   ],
-  providers: []
+  providers: [PersistenceApi]
 })
 export class AppModule {}
