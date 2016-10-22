@@ -1,48 +1,77 @@
 import { Component } from '@angular/core';
 
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 
-
-// import * as cxml from 'cxml';
-// import * as example from 'cxml/test/xmlns/dir-example';
-
-
 @Component({
-  templateUrl: 'list.html'
+    templateUrl: 'list.html'
 })
 export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+    selectedItem: any;
+    icons: string[];
+    items: Array<{ title: string, icon: string }>;
 
 
+    constructor(public navCtrl: NavController, public navParams: NavParams, private alertCtrl: AlertController) {
+      // If we navigated to this page, we will have an item available as a nav param
+      this.selectedItem = navParams.get('item');
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+      this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
+        'american-football', 'boat', 'bluetooth', 'build'];
 
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+      this.items = [];
 
-    this.items = [];
-
-    if (localStorage.length > 0) {
-      for(var stockName in localStorage) {
-        this.items.push({
-          title: stockName,
-          note: 'bla',
-          icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-        });
+      if (localStorage.length > 0) {
+        for (var stockName in localStorage) {
+          this.items.push({
+            title: stockName,
+            note: 'bla',
+            icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+          });
+        }
       }
     }
 
-  }
+    itemTapped(event, item) {
+        this.navCtrl.push(ItemDetailsPage, {
+            item: item
+        });
+    }
 
-  itemTapped(event, item) {
-    this.navCtrl.push(ItemDetailsPage, {
-      item: item
-    });
-  }
+    addStock(event) {
+        this.presentPrompt();
+    }
+
+    presentPrompt() {
+        let alert = this.alertCtrl.create({
+            title: 'Add stock',
+            inputs: [
+                {
+                    name: 'stockName',
+                    placeholder: 'Stock name'
+                }
+            ],
+            buttons: [
+                {
+                    text: 'Add',
+                    role: 'Add',
+                    handler: data => {
+                        this.items.push({
+                            title: data.stockName,
+                            icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+                        });
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'Cancel',
+                    handler: data => {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        });
+        alert.present();
+    }
 }
