@@ -14,8 +14,6 @@ export class ItemDetailsPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
-
-    console.log('again: ', localStorage);
   }
 
   ionViewWillEnter() {
@@ -40,7 +38,14 @@ export class ItemDetailsPage {
     });
   }
 
-  itemTapped(event, item) {
-    alert('taped');
+  viewItemDetails(itemCode) {
+    this.navCtrl.push(NewItem, {
+      item: this.navParams.get('item')
+    });
   }
+
+  //
+  // itemTapped(event, item) {
+  //   alert('taped');
+  // }
 }
