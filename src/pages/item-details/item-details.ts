@@ -4,6 +4,7 @@ import { NavController, NavParams, PopoverController } from 'ionic-angular';
 import { StockList } from "../../app/shared/StockList";
 import { StockItemPage } from "../stock-item/stock-item";
 import { PopoverPage } from './PopoverPage';
+import { StockItem } from "../../app/shared/StockItem";
 
 @Component({
   templateUrl: 'item-details.html'
@@ -11,7 +12,7 @@ import { PopoverPage } from './PopoverPage';
 export class ItemDetailsPage {
   stockList: StockList;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
     // If we navigated to this page, we will have an item available as a nav param
     this.stockList = navParams.get('item');
   }
@@ -28,7 +29,7 @@ export class ItemDetailsPage {
 
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage, {
-      stockName: this.selectedItem.title
+      stockName: this.stockList.name
     });
     popover.present({
       ev: myEvent
@@ -37,7 +38,7 @@ export class ItemDetailsPage {
   }
 
   viewItemDetails(itemCode) {
-    this.navCtrl.push(NewItem, {
+    this.navCtrl.push(StockItem, {
       item: this.navParams.get('item')
     });
   }

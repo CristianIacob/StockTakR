@@ -8,6 +8,7 @@ export class PersistenceApi {
   local = new Storage();
 
   constructor() {
+    // TODO : remove before production
     this.getStockList().then(data => {
       if (data === null || data == undefined) {
         this.init();
