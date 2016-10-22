@@ -26,7 +26,6 @@ export class ListPage {
         for (var stockName in localStorage) {
           this.items.push({
             title: stockName,
-            note: 'bla',
             icon: this.icons[Math.floor(Math.random() * this.icons.length)]
           });
         }
