@@ -1,3 +1,3 @@
 export class StockItem {
-  constructor(public id: string) {}
+  constructor(public barcode: string, public location: string) {}
 }

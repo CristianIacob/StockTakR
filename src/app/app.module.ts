@@ -6,6 +6,7 @@ import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { NewItem } from '../pages/new-item/new-item';
 import { PersistenceApi } from "./shared/persistence.service";
+import { StockItemPage } from "../pages/stock-item/stock-item";
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { PersistenceApi } from "./shared/persistence.service";
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
+    StockItemPage,
     NewItem
   ],
   imports: [
@@ -24,6 +26,7 @@ import { PersistenceApi } from "./shared/persistence.service";
     HelloIonicPage,
     ItemDetailsPage,
     ListPage,
+    StockItemPage,
     NewItem
   ],
   providers: [PersistenceApi]

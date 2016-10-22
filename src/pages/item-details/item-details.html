@@ -3,17 +3,14 @@
     <button menuToggle *ngIf="!selectedItem">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{selectedItem.title}}</ion-title>
+    <ion-title>{{stockList.name}}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of stockItems" (click)="itemTapped($event, item)">
-      {{item.code}}
-      <div item-right>
-        {{item.name}}
-      </div>
+    <button ion-item *ngFor="let item of stockList.items" (click)="itemTapped(item)">
+      {{item.barcode}}
     </button>
   </ion-list>
 </ion-content>

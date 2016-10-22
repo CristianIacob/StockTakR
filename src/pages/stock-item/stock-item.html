@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>{{stockItem.name}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-input placeholder="Barcode" [value]="Barcode"></ion-input>
+  <button ion-button round (click)="scanImage()">Scan</button>
+
+  <ion-input placeholder="Geolocation" [value]="Geolocation"></ion-input>
+  <button ion-button round (click)="getGeolocation()">Get location</button>
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button full (click)="saveItem()">Save</button>
+  </ion-toolbar>
+</ion-footer>

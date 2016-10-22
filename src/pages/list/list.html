@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -9,25 +9,18 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon name="{{item.icon}}" item-left></ion-icon>
-      {{item.title}}
-    </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
-
-  <ion-list>
-    <button ion-item *ngFor="let stock of stockLists">
+    <ion-item-divider secondary>Select the Stock List that you want to work with:</ion-item-divider>
+    <button ion-item *ngFor="let stock of stockLists" (click)="itemTapped(stock)">
+      <ion-icon name="arrow-forward" item-right></ion-icon>
       {{stock.name}}
     </button>
   </ion-list>
-
 </ion-content>
 
 <ion-footer>
-    <button class="addStockBtn" (click)="addStock($event)" ion-fab large item-right>
+  <ion-toolbar>
+    <button ion-fab large item-right (click)="addStockList()">
       <ion-icon name="add"></ion-icon>
     </button>
+  </ion-toolbar>
 </ion-footer>

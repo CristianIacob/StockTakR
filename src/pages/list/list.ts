@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 import { PersistenceApi } from "../../app/shared/persistence.service";
@@ -10,79 +9,42 @@ import { StockList } from "../../app/shared/StockList";
     templateUrl: 'list.html'
 })
 export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{ title: string, icon: string }>;
-  stockLists: StockList[];
+  stockLists: StockList[] = [];
 
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
               private alertCtrl: AlertController,
-              private dataService: PersistenceApi) {
-      // If we navigated to this page, we will have an item available as a nav param
-      this.selectedItem = navParams.get('item');
+              private dataService: PersistenceApi) {}
 
-      this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-        'american-football', 'boat', 'bluetooth', 'build'];
-
-      this.items = [];
-
-      if (localStorage.length > 0) {
-        for (var stockName in localStorage) {
-          this.items.push({
-            title: stockName,
-            icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-          });
+  addStockList() {
+    let alert = this.alertCtrl.create({
+      title: 'Add stock',
+      inputs: [{ name: 'stockName', placeholder: 'Stock name' }],
+      buttons: [
+        {
+          text: 'Add', role: 'Add',
+          handler: data => {
+            var stockList: StockList = new StockList(data.stockName, null);
+            this.stockLists.push(stockList);
+            this.dataService.setStockList(this.stockLists);
+          }
+        },
+        {
+          text: 'Cancel', role: 'Cancel',
+          handler: data => {console.log('Cancel clicked');}
         }
-      }
-    }
+      ]
+    });
+    alert.present();
+  }
 
-    itemTapped(event, item) {
-        this.navCtrl.push(ItemDetailsPage, {
-            item: item
-        });
-    }
 
-    addStock(event) {
-        this.presentPrompt();
-    }
-
-    presentPrompt() {
-        let alert = this.alertCtrl.create({
-            title: 'Add stock',
-            inputs: [
-                {
-                    name: 'stockName',
-                    placeholder: 'Stock name'
-                }
-            ],
-            buttons: [
-                {
-                    text: 'Add',
-                    role: 'Add',
-                    handler: data => {
-                        this.items.push({
-                            title: data.stockName,
-                            icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-                        });
-                    }
-                },
-                {
-                    text: 'Cancel',
-                    role: 'Cancel',
-                    handler: data => {
-                        console.log('Cancel clicked');
-                    }
-                }
-            ]
-        });
-        alert.present();
-    }
-
-  ionViewDidLoad() {
+  ionViewWillEnter() {
     this.dataService.getStockList().then(data => {
       this.stockLists = data;
-      console.log(data);
     });
+  }
+
+  itemTapped(item) {
+    this.navCtrl.push(ItemDetailsPage, { item: item });
   }
 }

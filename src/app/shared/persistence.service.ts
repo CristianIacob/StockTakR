@@ -26,10 +26,10 @@ export class PersistenceApi {
   init() {
     console.log('No Stock Lists Found... Creating...');
 
-    var l1_i1: StockItem = new StockItem('l1_i1');
-    var l1_i2: StockItem = new StockItem('l1_i2');
-    var l2_i1: StockItem = new StockItem('l2_i1');
-    var l2_i2: StockItem = new StockItem('l2_i2');
+    var l1_i1: StockItem = new StockItem('l1_i1', 'location');
+    var l1_i2: StockItem = new StockItem('l1_i2', 'location');
+    var l2_i1: StockItem = new StockItem('l2_i1', 'location');
+    var l2_i2: StockItem = new StockItem('l2_i2', 'location');
 
     var stockLists: StockList[] = [
       new StockList('list1', [l1_i1, l1_i2]),
