@@ -6,7 +6,7 @@ import { PersistenceApi } from "../../app/shared/persistence.service";
 import { StockList } from "../../app/shared/StockList";
 
 @Component({
-    templateUrl: 'list.html'
+  templateUrl: 'list.html'
 })
 export class ListPage {
   stockLists: StockList[] = [];

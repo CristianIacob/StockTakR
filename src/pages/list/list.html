@@ -1,9 +1,6 @@
 <ion-header>
   <ion-navbar color="primary">
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-title>Stock List</ion-title>
+   <ion-title>Stock List</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -17,10 +14,9 @@
   </ion-list>
 </ion-content>
 
+  <ion-navbar>
 <ion-footer>
-  <ion-toolbar>
-    <button ion-fab large item-right (click)="addStockList()">
-      <ion-icon name="add"></ion-icon>
-    </button>
-  </ion-toolbar>
+  <button class="addStockBtn" (click)="addStockList()" ion-fab large item-right>
+    <ion-icon name="add"></ion-icon>
+  </button>
 </ion-footer>
