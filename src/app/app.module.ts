@@ -5,6 +5,7 @@ import { ItemDetailsPage } from '../pages/item-details/item-details';
 import { ListPage } from '../pages/list/list';
 import { NewItem } from '../pages/new-item/new-item';
 import { PopoverPage } from '../pages/item-details/PopoverPage';
+import { PersistenceApi } from "./shared/persistence.service";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,6 @@ import { PopoverPage } from '../pages/item-details/PopoverPage';
     NewItem,
     PopoverPage
   ],
-  providers: []
+  providers: [PersistenceApi]
 })
 export class AppModule {}

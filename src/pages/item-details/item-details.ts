@@ -41,6 +41,8 @@ export class ItemDetailsPage {
         });
     }
 
+
+
     itemTapped(event, item) {
         alert('taped');
     }
@@ -54,4 +56,10 @@ export class ItemDetailsPage {
         });
 
     }
+    viewItemDetails(itemCode) {
+        this.navCtrl.push(NewItem, {
+            item: this.navParams.get('item')
+        });
+    }
+
 }

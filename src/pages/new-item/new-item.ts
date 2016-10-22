@@ -8,38 +8,39 @@ import { BarcodeScanner, Geolocation } from 'ionic-native';
 export class NewItem {
   code: string;
   geolocation: string;
+  itemName: string;
+  comments: string;
+  quantity: number;
   stockName: string;
+  timeout: number = 10000;
+
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams) {
     this.stockName = navParams.get('item').title;
   }
 
   scanImage() {
     BarcodeScanner.scan().then((barcodeData) => {
-      console.log('Success');
       this.code = barcodeData.text;
       alert(barcodeData.text);
     }, (err) => {
-      console.log('error:', err);
+      alert('error:' + err);
     });
-
   }
 
   getGeolocation() {
-    alert('get geolocation');
-
-    if ("geolocation" in navigator) {
-      alert('geolocation available');
-    } else {
-      alert('geolocation not available');
-    }
+    // if ("geolocation" in navigator) {
+    //   alert('geolocation available');
+    // } else {
+    //   alert('geolocation not available');
+    // }
 
     var PositionOptions = {
       enableHighAccuracy: true,
-      timeout: 10000,
+      timeout: this.timeout,
       maximumAge: 0
     };
 
-    // presentLoading();
+    this.presentLoading();
     Geolocation.getCurrentPosition(PositionOptions).then((resp) => {
       this.geolocation = resp.coords.latitude + ' , ' + resp.coords.longitude;
       alert('location: ' + this.geolocation);
@@ -61,21 +62,19 @@ export class NewItem {
       var itemInfo = JSON.parse(localStorageStock);
       itemInfo.push(info);
       newStockItems = itemInfo;
-      // localStorage.setItem(this.navParams.get('item').title, JSON.stringify(itemInfo));
     } else {
       newStockItems = [info];
-      // localStorage.setItem(this.navParams.get('item').title, JSON.stringify([info]));
     }
     localStorage.setItem(this.stockName, JSON.stringify(newStockItems));
     this.navCtrl.pop();
   }
 
-  // presentLoading() {
-  //   let loader = this.loadingCtrl.create({
-  //     content: "Please wait...",
-  //     duration: 10000
-  //   });
-  //   loader.present();
-  // }
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: this.timeout
+    });
+    loader.present();
+  }
 
 }

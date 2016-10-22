@@ -17,12 +17,17 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let item of stockItems" (click)="itemTapped($event, item)">
-      {{item.code}}
-      <div item-right>
-        {{item.name}}
-      </div>
-    </button>
+    <ion-item  *ngFor="let item of stockItems">
+      <h2>{{item.code}}</h2>
+      <p>{{item.location}}</p>
+      <button clear item-right (click)="viewItemDetails(item.code)">View</button>
+      <!--<button ion-item *ngFor="let item of stockItems" (click)="itemTapped($event, item)">-->
+        <!--{{item.code}}-->
+        <!--<div item-right>-->
+          <!--{{item.name}}-->
+        <!--</div>-->
+      <!--</button>-->
+    </ion-item>
   </ion-list>
 
 </ion-content>
