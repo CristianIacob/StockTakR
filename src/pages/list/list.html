@@ -18,6 +18,12 @@
     You navigated here from <b>{{selectedItem.title}}</b>
   </div>
 
+  <ion-list>
+    <button ion-item *ngFor="let stock of stockLists">
+      {{stock.name}}
+    </button>
+  </ion-list>
+
 </ion-content>
 
 <ion-footer>
