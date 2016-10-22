@@ -60,6 +60,7 @@ export class ListPage {
                             title: data.stockName,
                             icon: this.icons[Math.floor(Math.random() * this.icons.length)]
                         });
+                        localStorage.setItem(data.stockName,"[]");
                     }
                 },
                 {

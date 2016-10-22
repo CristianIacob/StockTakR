@@ -3,7 +3,15 @@
     <button menuToggle *ngIf="!selectedItem">
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>{{selectedItem.title}}</ion-title>
+
+    <ion-title>
+      {{selectedItem.title}}
+    </ion-title>
+    <ion-buttons end>
+      <button end color="default" ion-button (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
@@ -16,10 +24,11 @@
       </div>
     </button>
   </ion-list>
+
 </ion-content>
 
 <ion-footer>
   <ion-toolbar>
-    <button ion-button full (click)="newItemPage()">Add new item</button>
+    <button ion-button block (click)="newItemPage()">Add new item</button>
   </ion-toolbar>
 </ion-footer>
