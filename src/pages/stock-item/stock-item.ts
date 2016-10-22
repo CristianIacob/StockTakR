@@ -8,8 +8,8 @@ import { BarcodeScanner, Geolocation } from 'ionic-native';
   templateUrl: 'stock-item.html'
 })
 export class StockItemPage {
-
   stockItem: StockItem;
+  timeout: number = 10000;
 
   constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams) {
     this.stockItem = navParams.get('item');
@@ -24,13 +24,25 @@ export class StockItemPage {
   }
 
   getGeolocation() {
-    var PositionOptions = { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 };
+    var PositionOptions = { enableHighAccuracy: true, timeout: this.timeout, maximumAge: 0 };
 
+    this.presentLoading();
     Geolocation.getCurrentPosition(PositionOptions).then((resp) => {
       var location = resp.coords.latitude + ' , ' + resp.coords.longitude;
       this.stockItem.location = location;
     }, (err) => {
       console.log('An error occurred while trying to get the location', err);
     });
+  }
+
+  // TODO: implement
+  saveItem() {}
+
+  presentLoading() {
+    let loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: this.timeout
+    });
+    loader.present();
   }
 }

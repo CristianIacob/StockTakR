@@ -11,10 +11,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of stockList.items" (click)="itemTapped(item)">
+    <ion-item *ngFor="let item of stockList.items">
       <h2>{{item.barcode}}</h2>
       <p>{{item.location}}</p>
-      <button clear item-right (click)="viewItemDetails(item.barcode)">View</button>
+      <button clear item-right (click)="viewItemDetails(item)">View</button>
     </ion-item>
   </ion-list>
 

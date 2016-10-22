@@ -1,16 +1,64 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{stockItem.name}}</ion-title>
+    <ion-title>{{stockItem.barcode === null ||stockItem.barcode == undefined ? "Add new item": stockItem.barcode}}
+    </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-input placeholder="Barcode" [value]="Barcode"></ion-input>
-  <button ion-button round (click)="scanImage()">Scan</button>
+  <ion-grid>
+    <ion-row>
+      <ion-col width-80>
+        <ion-input placeholder="Code" [value]="code" [(ngModel)]="code"></ion-input>
+      </ion-col>
+      <ion-col width-20>
+        <button ion-button icon-only color="light" (click)="scanImage()">
+          <ion-icon name="barcode"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
 
-  <ion-input placeholder="Geolocation" [value]="Geolocation"></ion-input>
-  <button ion-button round (click)="getGeolocation()">Get location</button>
+    <ion-row>
+      <ion-col width-80>
+        <ion-input placeholder="Geolocation" [value]="geolocation" [(ngModel)]="geolocation"></ion-input>
+      </ion-col>
+      <ion-col width-20>
+        <button ion-button icon-only color="light" (click)="getGeolocation()">
+          <ion-icon name="pin"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+
+      <ion-col width-80>
+        <ion-input placeholder="Name" [value]="itemName" [(ngModel)]="itemName"></ion-input>
+      </ion-col>
+      <ion-col width-20>
+        <ion-icon name="book"></ion-icon>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+
+      <ion-col width-80>
+        <ion-textarea placeholder="Comments" [value]="comments" [(ngModel)]="comments"></ion-textarea>
+      </ion-col>
+      <ion-col width-20>
+        <ion-icon name="chatbubbles" color="balanced"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col width-80>
+        <input placeholder="Quantity" type="number" [(ngModel)]="quantity" step="1" [value]="quantity">
+      </ion-col>
+      <ion-col width-20>
+        <ion-icon name="albums" color="balanced"></ion-icon>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>
+
 
 <ion-footer>
   <ion-toolbar>

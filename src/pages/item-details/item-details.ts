@@ -23,10 +23,6 @@ export class ItemDetailsPage {
     });
   }
 
-  itemTapped(item) {
-    this.navCtrl.push(StockItemPage, { item: item });
-  }
-
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage, {
       stockName: this.stockList.name
@@ -37,9 +33,7 @@ export class ItemDetailsPage {
 
   }
 
-  viewItemDetails(itemCode) {
-    this.navCtrl.push(StockItem, {
-      item: this.navParams.get('item')
-    });
+  viewItemDetails(item) {
+    this.navCtrl.push(StockItemPage, { item: item });
   }
 }
