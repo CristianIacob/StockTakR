@@ -17,11 +17,9 @@
       <button clear item-right (click)="viewItemDetails(item)">View</button>
     </ion-item>
   </ion-list>
-
+  <ion-fab bottom right>
+    <button class="bottomRightFAB" ion-fab (click)="newItemPage()" large>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar>
-    <button ion-button block (click)="newItemPage()">Add new item</button>
-  </ion-toolbar>
-</ion-footer>

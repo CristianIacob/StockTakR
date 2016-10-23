@@ -12,10 +12,9 @@
       {{stock.name}}
     </button>
   </ion-list>
+  <ion-fab bottom right>
+    <button class="bottomRightFAB" ion-fab (click)="addStockList()" large>
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
-
-<ion-footer>
-  <button class="addStockBtn" (click)="addStockList()" ion-fab large item-right>
-    <ion-icon name="add"></ion-icon>
-  </button>
-</ion-footer>
