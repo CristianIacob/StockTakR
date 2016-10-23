@@ -9,7 +9,8 @@
     <ion-item-divider secondary>Select the Stock List that you want to work with:</ion-item-divider>
     <button ion-item *ngFor="let stock of stockLists" (click)="itemTapped(stock)">
       <ion-icon name="arrow-forward" item-right></ion-icon>
-      {{stock.name}}
+      <!--{{stock.name}}-->
+      {{stock}}
     </button>
   </ion-list>
 </ion-content>

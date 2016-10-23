@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, PopoverController } from 'ionic-angular';
+import { PersistenceApi } from "../../app/shared/persistence.service";
 
-import { StockList } from "../../app/shared/StockList";
+// import { StockList } from "../../app/shared/StockList";
+import { StockItem } from  "../../app/shared/StockItem";
 import { StockItemPage } from "../stock-item/stock-item";
 import { PopoverPage } from './PopoverPage';
 
@@ -9,22 +11,29 @@ import { PopoverPage } from './PopoverPage';
   templateUrl: 'item-details.html'
 })
 export class ItemDetailsPage {
-  stockList: StockList;
+  stockItems: {};
+  stockListKeys: string[] = [];
+  stockName: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public popoverCtrl: PopoverController) {
-    // If we navigated to this page, we will have an item available as a nav param
-    this.stockList = navParams.get('item');
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public popoverCtrl: PopoverController,
+    private dataService: PersistenceApi) {
+
+    this.stockName = navParams.get('stock');
   }
 
   newItemPage() {
     this.navCtrl.push(StockItemPage, {
-      item: this.navParams.get('item')
+      stockName: this.stockName
     });
   }
 
+  // To do
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage, {
-      stockName: this.stockList.name
+      stockName: this.stockName
     });
     popover.present({
       ev: myEvent
@@ -33,6 +42,18 @@ export class ItemDetailsPage {
   }
 
   viewItemDetails(item) {
-    this.navCtrl.push(StockItemPage, { item: item });
+    this.navCtrl.push(StockItemPage, {
+      stockName: this.stockName,
+      item: item
+    });
+  }
+
+  ionViewWillEnter() {
+    this.dataService.getStockList(this.stockName)
+      .then(stockItems => {
+        this.stockItems = stockItems;
+        this.stockListKeys = Object.keys(this.stockItems);
+      })
+      .catch(err => console.log('Error getting stock items!'));
   }
 }

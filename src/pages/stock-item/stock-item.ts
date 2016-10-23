@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController, NavParams } from 'ionic-angular';
 import { StockItem } from "../../app/shared/StockItem";
+import { PersistenceApi } from "../../app/shared/persistence.service";
 
 import { BarcodeScanner, Geolocation } from 'ionic-native';
 
@@ -8,11 +9,20 @@ import { BarcodeScanner, Geolocation } from 'ionic-native';
   templateUrl: 'stock-item.html'
 })
 export class StockItemPage {
-  stockItem: StockItem;
+  stockName: string;
+  stockItem: StockItem = new StockItem(null, null, null, null, null);
   timeout: number = 10000;
 
-  constructor(public navCtrl: NavController, public loadingCtrl: LoadingController, public navParams: NavParams) {
-    this.stockItem = navParams.get('item');
+  constructor(
+    public navCtrl: NavController,
+    public loadingCtrl: LoadingController,
+    public navParams: NavParams,
+    private dataService: PersistenceApi) {
+
+    this.stockName = navParams.get('stockName');
+    if(navParams.get('item')) {
+      this.stockItem = navParams.get('item');
+    }
   }
 
   scanImage() {
@@ -35,8 +45,16 @@ export class StockItemPage {
     });
   }
 
-  // TODO: implement
-  saveItem() {}
+  saveItem() {
+    var newStockItem = new StockItem(this.stockItem.barcode, this.stockItem.location, this.stockItem.quantity, this.stockItem.name, this.stockItem.comments);
+    this.dataService.getStockList(this.stockName)
+      .then(stockItems => {
+        stockItems[this.stockItem.barcode] = newStockItem;
+        console.log('stockItems: ', stockItems);
+        this.dataService.setStockList(this.stockName, stockItems);
+      })
+      .then(() => this.navCtrl.pop());
+  }
 
   presentLoading() {
     let loader = this.loadingCtrl.create({

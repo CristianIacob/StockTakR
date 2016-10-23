@@ -1,6 +1,6 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>{{stockList.name}}</ion-title>
+    <ion-title>{{stockName}}</ion-title>
     <ion-buttons end>
       <button end color="default" ion-button (click)="presentPopover($event)">
         <ion-icon name="more"></ion-icon>
@@ -11,10 +11,10 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of stockList.items">
-      <h2>{{item.barcode}}</h2>
-      <p>{{item.location}}</p>
-      <button clear item-right (click)="viewItemDetails(item)">View</button>
+    <ion-item *ngFor="let key of stockListKeys">
+      <h2>{{stockItems[key].barcode}}</h2>
+      <p>{{stockItems[key].location}}</p>
+      <button clear item-right (click)="viewItemDetails(stockItems[key])">View</button>
     </ion-item>
   </ion-list>
 

@@ -3,13 +3,16 @@ import { NavController, AlertController } from 'ionic-angular';
 
 import { ItemDetailsPage } from '../item-details/item-details';
 import { PersistenceApi } from "../../app/shared/persistence.service";
-import { StockList } from "../../app/shared/StockList";
+// import { StockList } from "../../app/shared/StockList";
+import { StockItem } from  "../../app/shared/StockItem";
 
 @Component({
     templateUrl: 'list.html'
 })
 export class ListPage {
-    stockLists: StockList[] = [];
+    // stockLists: StockList[] = [];
+    stockLists: any = [];
+    stockItems: StockItem[] = [];
 
     constructor(public navCtrl: NavController,
         private alertCtrl: AlertController,
@@ -23,9 +26,11 @@ export class ListPage {
                 {
                     text: 'Add', role: 'Add',
                     handler: data => {
-                        var stockList: StockList = new StockList(data.stockName, null);
-                        this.stockLists.push(stockList);
-                        this.dataService.setStockList(this.stockLists);
+                        // var stockList: StockList = new StockList(data.stockName, null);
+                        // this.stockLists.push(stockList);
+                        // this.dataService.setStockList(this.stockLists);
+                      this.stockLists.push(data.stockName);
+                      this.dataService.setStockList(data.stockName, {});
                     }
                 },
                 {
@@ -39,14 +44,17 @@ export class ListPage {
 
 
     ionViewWillEnter() {
-        this.dataService.getStockList().then(data => {
-            if (data) {
-                this.stockLists = data;
-            }
-        });
+        // this.dataService.getStockList().then(data => {
+        //     if (data) {
+        //         this.stockLists = data;
+        //     }
+        // });
+
+      this.stockLists = this.dataService.getAllStocks();
+      console.log('stockList: ', this.stockLists);
     }
 
-    itemTapped(item) {
-        this.navCtrl.push(ItemDetailsPage, { item: item });
+    itemTapped(stock) {
+        this.navCtrl.push(ItemDetailsPage, { stock: stock });
     }
 }
