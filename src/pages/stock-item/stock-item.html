@@ -57,11 +57,16 @@
     </ion-row>
 
   </ion-grid>
+  <ion-fab bottom right>
+    <button class="bottomRightFAB" ion-fab (click)="saveItem()" large>
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
 
-
+<!--
 <ion-footer>
   <ion-toolbar>
-    <button ion-button full (click)="saveItem()">Save</button>
+    <button class="centerButton" ion-button round large (click)="saveItem()">Save</button>
   </ion-toolbar>
-</ion-footer>
+</ion-footer> -->

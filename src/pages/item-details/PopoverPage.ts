@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
-import { FileChooser } from 'ionic-native';
+import { FileChooser, File } from 'ionic-native';
 import { PersistenceApi } from "../../app/shared/persistence.service";
 import { StockList } from "../../app/shared/StockList";
 declare var cordova: any;
@@ -21,38 +21,39 @@ export class PopoverPage {
     }
 
     import() {
-        // var self = this;
-        // FileChooser.open()
-        //     .then((uri) => {
-        //         window.resolveLocalFileSystemURL(uri, function(entry) {
-        //             entry.file(
-        //                 (file) => {
-        //                     var reader = new FileReader();
-        //                     reader.onloadend = function(e) {
-        //                         var result = JSON.parse(e.target["_result"]);
-        //                         for(var list of self.stockLists) {
-        //                           if(list.name === self.stockName) {
-        //                           }
-        //                         }
-        //                         localStorage.setItem(self.stockName, JSON.stringify(result.stock));
-        //                     };
-        //                     reader.readAsText(file);
-        //                 },
-        //                 (error) => {
-        //                     alert("FileEntry.file error: " + error.code);
-        //                 }
-        //             );
-        //         },
-        //             function(error) {
-        //                 alert("resolveLocalFileSystemURL error: " + error.code);
-        //             });
-        //     })
-        //     .catch(e => alert(JSON.stringify(e)));
-        // this.viewCtrl.dismiss();
+        var self = this;
+        FileChooser.open()
+            .then((uri) => {
+                window.resolveLocalFileSystemURL(uri, function(entry) {
+                    entry.file(
+                        (file) => {
+                            var reader = new FileReader();
+                            reader.onloadend = function(e) {
+                                var result = JSON.parse(e.target["_result"]);
+                                for (var list of self.stockLists) {
+                                    if (list.name === self.stockName) {
+                                    }
+                                }
+                                localStorage.setItem(self.stockName, JSON.stringify(result.stock));
+                            };
+                            reader.readAsText(file);
+                        },
+                        (error) => {
+                            alert("FileEntry.file error: " + error.code);
+                        }
+                    );
+                },
+                    function(error) {
+                        alert("resolveLocalFileSystemURL error: " + error.code);
+                    });
+            })
+            .catch(e => alert(JSON.stringify(e)));
+        this.viewCtrl.dismiss();
     }
 
     exportAll() {
-        alert("export all")
+        alert("export all");
+        File.writeFile(cordova.file.externalRootDirectory, "test.txt", "test1234 works", { replace: true });
         this.viewCtrl.dismiss();
     }
 
@@ -62,11 +63,11 @@ export class PopoverPage {
     }
 
     ionViewWillEnter() {
-        // this.dataService.getStockList().then(data => {
-        //     if (data) {
-        //         this.stockLists = data;
-        //     }
-        // });
+        this.dataService.getStockList().then(data => {
+            if (data) {
+                this.stockLists = data;
+            }
+        });
     }
 
 }
