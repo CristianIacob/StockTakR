@@ -1,12 +1,12 @@
 <ion-header>
   <ion-navbar color="primary">
-    <ion-title>Stock List</ion-title>
+    <ion-title text-center>StockTakR</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item-divider secondary>Select the Stock List that you want to work with:</ion-item-divider>
+    <ion-item-divider secondary>Select the Stock List that you want to work with</ion-item-divider>
     <button ion-item *ngFor="let stock of stockLists" (click)="itemTapped(stock)">
       <ion-icon name="arrow-forward" item-right></ion-icon>
       <!--{{stock.name}}-->

@@ -61,13 +61,4 @@ export class PopoverPage {
         alert("export update")
         this.viewCtrl.dismiss();
     }
-
-    ionViewWillEnter() {
-        this.dataService.getStockList().then(data => {
-            if (data) {
-                this.stockLists = data;
-            }
-        });
-    }
-
 }
