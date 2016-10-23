@@ -49,7 +49,7 @@ export class ListPage {
         //         this.stockLists = data;
         //     }
         // });
-
+      this.dataService.getStocks();
       this.stockLists = this.dataService.getAllStocks();
       console.log('stockList: ', this.stockLists);
     }

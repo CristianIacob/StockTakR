@@ -52,8 +52,10 @@ export class PopoverPage {
     }
 
     exportAll() {
-        alert("export all");
-        File.writeFile(cordova.file.externalRootDirectory, "test.txt", "test1234 works", { replace: true });
+        var data = this.dataService.getStocks();
+        console.log("data -*********->" , data);
+      console.log(String(data));
+        this.exportToFile("allData1.json", JSON.stringify(data));
         this.viewCtrl.dismiss();
     }
 
@@ -62,12 +64,16 @@ export class PopoverPage {
         this.viewCtrl.dismiss();
     }
 
+    exportToFile(filePath: string, fileContent: string) {
+      File.writeFile(cordova.file.externalRootDirectory, filePath, fileContent, { replace: true });
+    }
+
     ionViewWillEnter() {
-        this.dataService.getStockList().then(data => {
-            if (data) {
-                this.stockLists = data;
-            }
-        });
+        // this.dataService.getStockList().then(data => {
+        //     if (data) {
+        //         this.stockLists = data;
+        //     }
+        // });
     }
 
 }

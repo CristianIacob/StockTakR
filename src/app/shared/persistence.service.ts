@@ -24,4 +24,15 @@ export class PersistenceApi {
     return stocks;
   }
 
+  getStocks() {
+    var stocks = {};
+    this.local.forEach(function(value, key) {
+      console.log('key:', key);
+      console.log('value:', value);
+      stocks[key] = value;
+    });
+    console.log("stocks ------->" , stocks)
+    return stocks;
+  }
+
 }
