@@ -9,52 +9,38 @@
   <ion-grid>
     <ion-row>
       <ion-col width-80>
-        <ion-input placeholder="Code" [value]="stockItem.barcode" [(ngModel)]="stockItem.barcode"></ion-input>
+        <ion-item><ion-input placeholder="Code" [value]="stockItem.barcode" [(ngModel)]="stockItem.barcode"></ion-input></ion-item>
       </ion-col>
       <ion-col width-20>
-        <button ion-button icon-only color="light" (click)="scanImage()">
-          <ion-icon name="barcode"></ion-icon>
-        </button>
+        <button block ion-button icon-only color="light" (click)="scanImage()"><ion-icon name="barcode"></ion-icon></button>
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col width-80>
-        <ion-input placeholder="Geolocation" [value]="stockItem.location" [(ngModel)]="stockItem.location"></ion-input>
-      </ion-col>
+        <ion-col width-80>
+      <ion-item><ion-input placeholder="Geolocation" [value]="stockItem.location" [(ngModel)]="stockItem.location"></ion-input></ion-item>
+    </ion-col>
       <ion-col width-20>
-        <button ion-button icon-only color="light" (click)="getGeolocation()">
-          <ion-icon name="pin"></ion-icon>
-        </button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-
-      <ion-col width-80>
-        <ion-input placeholder="Name" [value]="stockItem.name" [(ngModel)]="stockItem.name"></ion-input>
-      </ion-col>
-      <ion-col width-20>
-        <ion-icon name="book"></ion-icon>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-
-      <ion-col width-80>
-        <ion-textarea placeholder="Comments" [value]="stockItem.comments" [(ngModel)]="stockItem.comments"></ion-textarea>
-      </ion-col>
-      <ion-col width-20>
-        <ion-icon name="chatbubbles" color="balanced"></ion-icon>
+        <button block ion-button  icon-only color="light" (click)="getGeolocation()"><ion-icon name="pin"></ion-icon></button>
       </ion-col>
     </ion-row>
 
     <ion-row>
-      <ion-col width-80>
-        <input placeholder="Quantity" type="number" [(ngModel)]="stockItem.quantity" step="1" [value]="stockItem.quantity">
-      </ion-col>
-      <ion-col width-20>
-        <ion-icon name="albums" color="balanced"></ion-icon>
-      </ion-col>
+        <ion-item><ion-input placeholder="Name" [value]="stockItem.name" [(ngModel)]="stockItem.name"></ion-input></ion-item>
+        <!-- <button block ion-button icon-only color="light"><ion-icon name="book"></ion-icon></button> -->
     </ion-row>
+
+    <ion-row>
+        <ion-item><ion-input placeholder="Quantity" type="number" [(ngModel)]="stockItem.quantity" step="1" [value]="stockItem.quantity"></ion-input></ion-item>
+        <!-- <button block ion-button icon-only color="light"><ion-icon name="albums" color="balanced"></ion-icon></button> -->
+    </ion-row>
+
+    <ion-row>
+        <ion-item item-left><ion-textarea placeholder="Comments" [value]="stockItem.comments" [(ngModel)]="stockItem.comments"></ion-textarea></ion-item>
+          <!-- <button block ion-button icon-only color="light"><ion-icon name="chatbubbles" color="balanced"></ion-icon></button> -->
+    </ion-row>
+
+
 
   </ion-grid>
   <ion-fab bottom right>
@@ -63,10 +49,3 @@
     </button>
   </ion-fab>
 </ion-content>
-
-<!--
-<ion-footer>
-  <ion-toolbar>
-    <button class="centerButton" ion-button round large (click)="saveItem()">Save</button>
-  </ion-toolbar>
-</ion-footer> -->
