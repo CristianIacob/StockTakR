@@ -21,7 +21,6 @@ export class PopoverPage {
   }
 
   import() {
-    this.importToCurrentList();
     var self = this;
     FileChooser.open()
       .then((uri) => {
