@@ -12,12 +12,18 @@ export class StockItemPage {
   stockName: string;
   stockItem: StockItem = new StockItem(null, null, null, null, null);
   timeout: number = 10000;
+  loader: any;
 
   constructor(
     public navCtrl: NavController,
     public loadingCtrl: LoadingController,
     public navParams: NavParams,
     private dataService: PersistenceApi) {
+
+    this.loader = this.loadingCtrl.create({
+      content: "Please wait...",
+      duration: this.timeout
+    });
 
     this.stockName = navParams.get('stockName');
     if(navParams.get('item')) {
@@ -36,12 +42,14 @@ export class StockItemPage {
   getGeolocation() {
     var PositionOptions = { enableHighAccuracy: true, timeout: this.timeout, maximumAge: 0 };
 
-    this.presentLoading();
+    this.loader.present();
     Geolocation.getCurrentPosition(PositionOptions).then((resp) => {
       var location = resp.coords.latitude + ' , ' + resp.coords.longitude;
       this.stockItem.location = location;
+      this.loader.dismissAll();
     }, (err) => {
-      console.log('An error occurred while trying to get the location', err);
+      alert('An error occurred while trying to get the location' + err);
+      this.loader.dismissAll();
     });
   }
 

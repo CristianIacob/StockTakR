@@ -64,6 +64,7 @@ export class PopoverPage {
   exportAll() {
     this.dataService.getStockList(this.stockName)
       .then(data => {
+        alert("data exported");
         this.exportToFile(this.stockName + ".json", JSON.stringify(data));
       });
     this.viewCtrl.dismiss();
