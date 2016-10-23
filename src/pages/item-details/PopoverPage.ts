@@ -7,46 +7,46 @@ declare var cordova: any;
 declare var window;
 
 @Component({
-    templateUrl: 'PopoverPage.html'
+  templateUrl: 'PopoverPage.html'
 })
 
 export class PopoverPage {
-    stockLists: StockList[] = [];
-    stockName: string;
+  stockLists: StockList[] = [];
+  stockName: string;
 
-    constructor(public viewCtrl: ViewController, public params: NavParams, private dataService: PersistenceApi) {
-        console.log(params);
-        this.stockName = params.get('stockName');
-        console.log("sent data: ", this.stockName);
-    }
+  constructor(public viewCtrl: ViewController, public params: NavParams, private dataService: PersistenceApi) {
+    console.log(params);
+    this.stockName = params.get('stockName');
+    console.log("sent data: ", this.stockName);
+  }
 
-    import() {
-      this.importToCurrentList();
-        var self = this;
-        FileChooser.open()
-            .then((uri) => {
-                window.resolveLocalFileSystemURL(uri, function(entry) {
-                    entry.file(
-                        (file) => {
-                            var reader = new FileReader();
-                            reader.onloadend = function(e) {
-                                var result = JSON.parse(e.target["_result"]);
-                                self.importToCurrentList(result);
-                            };
-                            reader.readAsText(file);
-                        },
-                        (error) => {
-                            alert("FileEntry.file error: " + error.code);
-                        }
-                    );
-                },
-                    function(error) {
-                        alert("resolveLocalFileSystemURL error: " + error.code);
-                    });
-            })
-            .catch(e => alert(JSON.stringify(e)));
-        this.viewCtrl.dismiss();
-    }
+  import() {
+    this.importToCurrentList();
+    var self = this;
+    FileChooser.open()
+      .then((uri) => {
+        window.resolveLocalFileSystemURL(uri, function (entry) {
+            entry.file(
+              (file) => {
+                var reader = new FileReader();
+                reader.onloadend = function (e) {
+                  var result = JSON.parse(e.target["_result"]);
+                  self.importToCurrentList(result);
+                };
+                reader.readAsText(file);
+              },
+              (error) => {
+                alert("FileEntry.file error: " + error.code);
+              }
+            );
+          },
+          function (error) {
+            alert("resolveLocalFileSystemURL error: " + error.code);
+          });
+      })
+      .catch(e => alert(JSON.stringify(e)));
+    this.viewCtrl.dismiss();
+  }
 
   importToCurrentList(fileContent: string) {
     console.log('importing');
@@ -62,17 +62,17 @@ export class PopoverPage {
       });
   }
 
-    exportAll() {
-      this.dataService.getStockList(this.stockName)
-        .then(data => {
-          this.exportToFile(this.stockName + ".json", JSON.stringify(data));
-        });
-      this.viewCtrl.dismiss();
-    }
+  exportAll() {
+    this.dataService.getStockList(this.stockName)
+      .then(data => {
+        this.exportToFile(this.stockName + ".json", JSON.stringify(data));
+      });
+    this.viewCtrl.dismiss();
+  }
 
-    exportToFile(filePath: string, fileContent: string) {
-      File.writeFile(cordova.file.externalRootDirectory, filePath, fileContent, { replace: true });
-    }
+  exportToFile(filePath: string, fileContent: string) {
+    File.writeFile(cordova.file.externalRootDirectory, filePath, fileContent, { replace: true });
+  }
 
   mergeRecursive(obj1, obj2) {
     for (var p in obj2) {
@@ -94,6 +94,6 @@ export class PopoverPage {
     }
 
     return obj1;
-    }
+  }
 
 }
