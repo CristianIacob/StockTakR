@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController, NavParams } from 'ionic-angular';
-import { FileChooser } from 'ionic-native';
+import { FileChooser, File } from 'ionic-native';
 import { PersistenceApi } from "../../app/shared/persistence.service";
 import { StockList } from "../../app/shared/StockList";
 declare var cordova: any;
@@ -30,9 +30,9 @@ export class PopoverPage {
                             var reader = new FileReader();
                             reader.onloadend = function(e) {
                                 var result = JSON.parse(e.target["_result"]);
-                                for(var list of self.stockLists) {
-                                  if(list.name === self.stockName) {
-                                  }
+                                for (var list of self.stockLists) {
+                                    if (list.name === self.stockName) {
+                                    }
                                 }
                                 localStorage.setItem(self.stockName, JSON.stringify(result.stock));
                             };
@@ -52,7 +52,8 @@ export class PopoverPage {
     }
 
     exportAll() {
-        alert("export all")
+        alert("export all");
+        File.writeFile(cordova.file.externalRootDirectory, "test.txt", "test1234 works", { replace: true });
         this.viewCtrl.dismiss();
     }
 
