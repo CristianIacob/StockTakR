@@ -31,7 +31,8 @@ export class PersistenceApi {
       console.log('value:', value);
       stocks[key] = value;
     });
-    console.log("stocks ------->" , stocks)
+    console.log("stocks ------->", stocks);
+    console.log("stringify ------->", JSON.stringify(stocks));
     return stocks;
   }
 
