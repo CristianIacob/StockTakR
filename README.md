@@ -20,7 +20,7 @@
 
 	Download it from here: https://developer.android.com/studio/index.html (Go to the bottom of the page)
 
-2.) Connect your mobile with you PC via USB cable
+2.) Connect your mobile with your PC via USB cable
 
 3.) Deploy application to your mobile
 	
