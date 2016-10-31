@@ -1,6 +1,6 @@
-# How to run the application
+## How to run the application
 
-## To start the application you must have node installed, then while in the project directory run in your console these commands:
+### To start the application you must have node installed, then while in the project directory run in your console these commands:
 
 1.) Install globally ionic and cordova: 
 
@@ -14,7 +14,7 @@
 
 	ionic serve
 	
-## To run the application on Android, you have to:
+### To run the application on Android, you have to:
 
 1.) Install Android SDK for you Android version
 
