@@ -14,7 +14,7 @@
 
 	ionic serve
 	
-### To run the application on Android, you have to:
+### To run the application on Android:
 
 1.) Install Android SDK for you Android version
 
